@@ -1,8 +1,3 @@
-# 🎵 Добавляем фоновую музыку!
-
-Отличная идея! Музыка создаст атмосферу детективного расследования. Вот обновлённый код с встроенным аудио-плеером:
-
-```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -134,7 +129,6 @@
             box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5);
         }
 
-        /* Эквалайзер-анимация */
         .equalizer {
             display: flex;
             align-items: flex-end;
@@ -476,13 +470,8 @@
                 padding: 8px 15px;
             }
 
-            .volume-slider {
-                width: 60px;
-            }
-
-            .music-info {
-                display: none;
-            }
+            .volume-slider { width: 60px; }
+            .music-info { display: none; }
         }
     </style>
 </head>
@@ -600,7 +589,7 @@
             <div class="case-question">Это самоубийство? Это убийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint1')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol1')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol1')">️ Ответ</button>
             </div>
             <div id="hint1" class="hint-box">
                 <div class="hint-content">Обратите внимание на разбитые часы и расстояние между костылями и мужчиной.</div>
@@ -628,7 +617,7 @@
             </div>
             <div class="case-question">Кто из присутствующих убил человека в туалете?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint2')">💡 Подсказка</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint2')"> Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol2')">⚖️ Ответ</button>
             </div>
             <div id="hint2" class="hint-box">
@@ -656,14 +645,14 @@
             <div class="case-question">Что произошло: убийство или самоубийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint3')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol3')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol3')">️ Ответ</button>
             </div>
             <div id="hint3" class="hint-box">
                 <div class="hint-content">Обратите внимание на кастрюлю на плите и цвет ручки рядом с запиской.</div>
             </div>
             <div id="sol3" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: УБИЙСТВО</div>
+                    <div class="verdict-title">️ ОТВЕТ: УБИЙСТВО</div>
                     <p class="verdict-text">А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!</p>
                 </div>
             </div>
@@ -683,14 +672,14 @@
             <div class="case-question">Надо классифицировать эту историю как убийство или девушка сама распорядилась своей жизнью, без вмешательства посторонних? Время пошло!</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint4')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol4')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol4')">️ Ответ</button>
             </div>
             <div id="hint4" class="hint-box">
                 <div class="hint-content">Обратите внимание, в какой руке девушка держит сигарету, и где стоит лампа.</div>
             </div>
             <div id="sol4" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО УБИЙСТВО (Инсценировка)</div>
+                    <div class="verdict-title">️ ОТВЕТ: ЭТО УБИЙСТВО (Инсценировка)</div>
                     <p class="verdict-text">Беглого осмотра достаточно, чтобы понять: девушка сидела на табуретке спиной к окну или стене и совершила выстрел из пистолета правой рукой.
 
 Далее начинают вылезать подозрительные нестыковки. Хотя пистолет в правой руке, совершенно очевидно, что девушка — левша. Лампа справа. Ручка слева. Банка воды слева. Пепельница слева. Да и сигарета тоже в левой руке. Зачем брать пистолет правой рукой? Да ещё не докурив начатую сигарету, что тоже абсурдно.
@@ -718,7 +707,7 @@
             <div class="case-question">Детективам всегда приходится нелегко, однако порой самое сложное даже не найти убийцу или улики, а понять: было ли это убийство, или человек сделал это сам с собой. Это именно такой случай, вы поможете?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint5')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol5')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol5')">️ Ответ</button>
             </div>
             <div id="hint5" class="hint-box">
                 <div class="hint-content">Обратите внимание, в какой руке жертва держит пистолет, и посмотрите в окно.</div>
@@ -757,7 +746,7 @@
             <div class="case-question">Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint6')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol6')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol6')">️ Ответ</button>
             </div>
             <div id="hint6" class="hint-box">
                 <div class="hint-content">Внимательно рассмотрите билет в руках одного из подозреваемых.</div>
@@ -784,7 +773,7 @@
             <div class="case-question">Кто разбил стекло: мужчина или женщина?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint7')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol7')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol7')">️ Ответ</button>
             </div>
             <div id="hint7" class="hint-box">
                 <div class="hint-content">Сравните рисунок протекторов шин на земле возле обоих автомобилей.</div>
@@ -833,7 +822,7 @@
     </p>
     <p>Ни один студент-юрист не пострадал при создании этого сайта. 😎</p>
     <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">
-        Все совпадения с реальными преступлениями случайны. Или нет. 🕵️♂️
+        Все совпадения с реальными преступлениями случайны. Или нет. ️‍♂️
     </p>
 </footer>
 
@@ -845,7 +834,6 @@
     const musicStatus = document.getElementById('musicStatus');
     let isPlaying = false;
 
-    // Установка начальной громкости
     bgMusic.volume = 0.3;
 
     function toggleMusic() {
@@ -858,7 +846,7 @@
             isPlaying = false;
         } else {
             bgMusic.play().then(() => {
-                playBtn.textContent = '⏸️';
+                playBtn.textContent = '️';
                 playBtn.classList.add('playing');
                 equalizer.classList.remove('paused');
                 musicStatus.textContent = 'Воспроизводится...';
@@ -874,7 +862,6 @@
         bgMusic.volume = value / 100;
     }
 
-    // Автозапуск музыки при первом клике на страницу
     document.addEventListener('click', function initAudio() {
         if (!isPlaying && bgMusic.readyState > 0) {
             bgMusic.play().then(() => {
@@ -888,7 +875,7 @@
         document.removeEventListener('click', initAudio);
     }, { once: true });
 
-    // ===== НАВИГАЦИЯ ПО ДЕЛАМ =====
+    // ===== НАВИГАЦИЯ =====
     function openCase(caseId) {
         document.getElementById('casesMenu').style.display = 'none';
         document.getElementById('coverBanner').style.display = 'none';
@@ -936,55 +923,3 @@
 
 </body>
 </html>
-```
-
----
-
-## 🎵 Что нужно добавить в папку:
-
-### Шаг 1: Скачайте музыку
-Вам нужен файл **`music.mp3`** — любая атмосферная детективная/триллерная музыка.
-
-**Где взять бесплатно:**
-- [Pixabay Music](https://pixabay.com/music/) — поиск: *"detective"*, *"mystery"*, *"noir"*, *"thriller"*
-- [FreePD](https://freepd.com/) — категория *"Suspense"*
-- [Incompetech](https://incompetech.com/music/) — Kevin MacLeod (укажите авторство!)
-
-**Рекомендации по трекам:**
-| Название | Атмосфера |
-|----------|-----------|
-| "Dark Noir" | Классический нуар 🌃 |
-| "Investigation Theme" | Расследование 🔍 |
-| "Mysterious Tension" | Напряжение ⚡ |
-| "Rainy Night Detective" | Дождливая ночь 🌧️ |
-
-### Шаг 2: Положите файл в папку
-Скопируйте скачанный MP3-файл в папку `detective-quiz` и переименуйте его в **`music.mp3`**.
-
-### Шаг 3: Загрузите всё на GitHub
-Перетащите **все файлы** (включая `music.mp3`) в репозиторий crime-quiz.
-
----
-
-## ✨ Что нового в коде:
-
-| Функция | Описание |
-|---------|----------|
-| 🎛️ Кнопка Play/Pause | Плавающая внизу справа |
-| 📊 Эквалайзер | Анимированные полоски при воспроизведении |
-| 🔊 Регулятор громкости | Ползунок для настройки звука |
-| ▶️ Автозапуск | Музыка стартует при первом клике на страницу |
-| 🔁 Зацикливание | Трек играет бесконечно (`loop`) |
-| 📱 Мобильная версия | Плеер адаптируется под маленькие экраны |
-
----
-
-## ⚠️ Важные моменты:
-
-1. **Браузеры блокируют автозвук** — поэтому музыка запустится только после первого клика пользователя на страницу. Это нормально!
-
-2. **Размер файла** — старайтесь использовать MP3 до 5–10 МБ, иначе страница будет долго грузиться.
-
-3. **Формат** — поддерживается `.mp3`, `.ogg`, `.wav`. Лучше всего `.mp3` (совместимость со всеми браузерами).
-
-Если хотите, я могу подобрать конкретную ссылку на бесплатный трек! 🎶
