@@ -168,60 +168,31 @@
 
         .case-detail-image-container {
             width: 100%;
-            max-height: 70vh;
+            height: 85vh;
             overflow: hidden;
             background: var(--bg-secondary);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .case-detail-image {
             width: 100%;
-            height: auto;
-            max-height: 70vh;
+            height: 100%;
             object-fit: contain;
             display: block;
         }
 
-        .dual-image-container {
-            position: relative;
-            width: 100%;
-            max-height: 70vh;
-            overflow: hidden;
-            background: var(--bg-secondary);
-            min-height: 400px;
+        .case-detail-content { 
+            padding: 20px 25px 30px;
         }
-
-        .dual-image {
-            position: absolute;
-            width: 75%;
-            height: auto;
-            max-height: 65vh;
-            object-fit: contain;
-            border: 3px solid var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-        }
-
-        .dual-image-1 {
-            top: 5%;
-            left: 5%;
-            transform: rotate(-4deg);
-            z-index: 1;
-        }
-
-        .dual-image-2 {
-            bottom: 5%;
-            right: 5%;
-            transform: rotate(4deg);
-            z-index: 2;
-        }
-
-        .case-detail-content { padding: 25px; }
 
         .case-detail-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             flex-wrap: wrap;
             gap: 15px;
         }
@@ -354,7 +325,7 @@
 
         @media (max-width: 768px) {
             .cases-menu { grid-template-columns: 1fr; }
-            .dual-image { width: 85%; }
+            .case-detail-image-container { height: 70vh; }
         }
     </style>
 </head>
@@ -369,7 +340,7 @@
 <div class="container">
     
     <div class="cover-banner" id="coverBanner">
-        <img src="обложка.png" alt="Обложка квеста">
+        <img src="обложка.jpg" alt="Обложка квеста">
     </div>
 
     <div class="intro">
@@ -379,56 +350,56 @@
 
     <div class="cases-menu" id="casesMenu">
         <div class="case-menu-item" onclick="openCase('case1')">
-            <img src="1.jpg" alt="Дело 1" class="case-menu-image">
+            <img src="1превью.png" alt="Дело 1" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 01</div>
                 <h3 class="case-menu-title">Это самоубийство? Это убийство?</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case2')">
-            <img src="2.jpg" alt="Дело 2" class="case-menu-image">
+            <img src="2превью.png" alt="Дело 2" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 02</div>
                 <h3 class="case-menu-title">Убийство в туалете</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case3')">
-            <img src="3.jpg" alt="Дело 3" class="case-menu-image">
+            <img src="3превью.png" alt="Дело 3" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 03</div>
                 <h3 class="case-menu-title">Труп в комнате</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case4')">
-            <img src="4.png" alt="Дело 4" class="case-menu-image">
+            <img src="4 превью.png" alt="Дело 4" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 04</div>
                 <h3 class="case-menu-title">Загадочное самоубийство?</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case5')">
-            <img src="5.png" alt="Дело 5" class="case-menu-image">
+            <img src="5превью.png" alt="Дело 5" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 05</div>
                 <h3 class="case-menu-title">Банкрот и пистолет</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case6')">
-            <img src="6.png" alt="Дело 6" class="case-menu-image">
+            <img src="6превью.png" alt="Дело 6" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 06</div>
                 <h3 class="case-menu-title">Исчезнувший документ</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case7')">
-            <img src="7.0.png" alt="Дело 7" class="case-menu-image">
+            <img src="7превью.png" alt="Дело 7" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 07</div>
                 <h3 class="case-menu-title">Разбитое стекло</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case8')">
-            <img src="8.png" alt="Дело 8" class="case-menu-image">
+            <img src="8превью.png" alt="Дело 8" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 08</div>
                 <h3 class="case-menu-title">Пропавшая статуэтка</h3>
@@ -456,7 +427,7 @@
             </div>
             <div id="sol1" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО БЫЛО... УБИЙСТВО!</div>
+                    <div class="verdict-title">️ ОТВЕТ: ЭТО БЫЛО... УБИЙСТВО!</div>
                     <p class="verdict-text">Присмотритесь внимательнее. Во-первых, в комнате есть следы борьбы, так как часы разбиты. Два стакана с водой указывают на присутствие двух человек, что также наводит на мысль о том, что убийца известен жертве.
 
 А на кровати лежат книга и ручка, что указывает на то, что покойный читал, а предсмертная записка была написана другой ручкой, которая, по-видимому, была подброшена. И кстати, костыли находятся слишком далеко от мужчины!</p>
@@ -505,14 +476,14 @@
             <div class="case-question">Что произошло: убийство или самоубийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint3')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol3')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol3')">️ Ответ</button>
             </div>
             <div id="hint3" class="hint-box">
                 <div class="hint-content">Обратите внимание на кастрюлю на плите и цвет ручки рядом с запиской.</div>
             </div>
             <div id="sol3" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: УБИЙСТВО</div>
+                    <div class="verdict-title">️ ОТВЕТ: УБИЙСТВО</div>
                     <p class="verdict-text">А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!</p>
                 </div>
             </div>
@@ -522,7 +493,7 @@
     <!-- CASE 4 -->
     <div id="case4" class="case-detail">
         <div class="case-detail-image-container">
-            <img src="4.png" alt="Дело 4" class="case-detail-image">
+            <img src="4.jpg" alt="Дело 4" class="case-detail-image">
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
@@ -532,7 +503,7 @@
             <div class="case-question">Надо классифицировать эту историю как убийство или девушка сама распорядилась своей жизнью, без вмешательства посторонних? Время пошло!</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint4')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol4')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol4')">️ Ответ</button>
             </div>
             <div id="hint4" class="hint-box">
                 <div class="hint-content">Обратите внимание, в какой руке девушка держит сигарету, и где стоит лампа.</div>
@@ -557,7 +528,7 @@
     <!-- CASE 5 -->
     <div id="case5" class="case-detail">
         <div class="case-detail-image-container">
-            <img src="5.png" alt="Дело 5" class="case-detail-image">
+            <img src="5.jpg" alt="Дело 5" class="case-detail-image">
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
@@ -567,7 +538,7 @@
             <div class="case-question">Детективам всегда приходится нелегко, однако порой самое сложное даже не найти убийцу или улики, а понять: было ли это убийство, или человек сделал это сам с собой. Это именно такой случай, вы поможете?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint5')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol5')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol5')">⚖️ Ответ</button>
             </div>
             <div id="hint5" class="hint-box">
                 <div class="hint-content">Обратите внимание, в какой руке жертва держит пистолет, и посмотрите в окно.</div>
@@ -596,7 +567,7 @@
     <!-- CASE 6 -->
     <div id="case6" class="case-detail">
         <div class="case-detail-image-container">
-            <img src="6.png" alt="Дело 6" class="case-detail-image">
+            <img src="6.jpg" alt="Дело 6" class="case-detail-image">
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
@@ -606,7 +577,7 @@
             <div class="case-question">Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint6')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol6')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol6')">️ Ответ</button>
             </div>
             <div id="hint6" class="hint-box">
                 <div class="hint-content">Внимательно рассмотрите билет в руках одного из подозреваемых.</div>
@@ -622,9 +593,8 @@
 
     <!-- CASE 7 -->
     <div id="case7" class="case-detail">
-        <div class="dual-image-container">
-            <img src="7.0.png" alt="Дело 7 - картинка 1" class="dual-image dual-image-1">
-            <img src="7.1.png" alt="Дело 7 - картинка 2" class="dual-image dual-image-2">
+        <div class="case-detail-image-container">
+            <img src="7.jpg" alt="Дело 7" class="case-detail-image">
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
@@ -634,7 +604,7 @@
             <div class="case-question">Кто разбил стекло: мужчина или женщина?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint7')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol7')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol7')">️ Ответ</button>
             </div>
             <div id="hint7" class="hint-box">
                 <div class="hint-content">Сравните рисунок протекторов шин на земле возле обоих автомобилей.</div>
@@ -651,7 +621,7 @@
     <!-- CASE 8 -->
     <div id="case8" class="case-detail">
         <div class="case-detail-image-container">
-            <img src="8.png" alt="Дело 8" class="case-detail-image">
+            <img src="8.jpg" alt="Дело 8" class="case-detail-image">
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
@@ -668,7 +638,7 @@
             </div>
             <div id="sol8" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">️ ОТВЕТ: ВОР — ДАМА В ШЛЯПЕ!</div>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ВОР — ДАМА В ШЛЯПЕ!</div>
                     <p class="verdict-text">Дама в шляпе спрятала статуэтку под шляпой!</p>
                 </div>
             </div>
@@ -683,7 +653,7 @@
     </p>
     <p>Ни один студент-юрист не пострадал при создании этого сайта. 😎</p>
     <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">
-        Все совпадения с реальными преступлениями случайны. Или нет. 🕵️‍♂️
+        Все совпадения с реальными преступлениями случайны. Или нет. ️‍♂️
     </p>
 </footer>
 
