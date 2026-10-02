@@ -1,3 +1,8 @@
+# 🎵 Добавляем фоновую музыку!
+
+Отличная идея! Музыка создаст атмосферу детективного расследования. Вот обновлённый код с встроенным аудио-плеером:
+
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -27,6 +32,141 @@
             min-height: 100vh;
         }
 
+        /* ===== МУЗЫКАЛЬНЫЙ ПЛЕЕР ===== */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-player:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        .music-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #b8962e 100%);
+            color: var(--bg-primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .music-btn.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(212, 175, 55, 0.8); }
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .music-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.8rem;
+            color: var(--accent-gold);
+        }
+
+        .music-status {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Эквалайзер-анимация */
+        .equalizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 20px;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: var(--accent-gold);
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+
+        .eq-bar:nth-child(1) { animation: eq1 0.8s ease-in-out infinite; }
+        .eq-bar:nth-child(2) { animation: eq2 0.6s ease-in-out infinite; }
+        .eq-bar:nth-child(3) { animation: eq3 0.9s ease-in-out infinite; }
+        .eq-bar:nth-child(4) { animation: eq4 0.7s ease-in-out infinite; }
+        .eq-bar:nth-child(5) { animation: eq5 0.85s ease-in-out infinite; }
+
+        @keyframes eq1 { 0%, 100% { height: 5px; } 50% { height: 18px; } }
+        @keyframes eq2 { 0%, 100% { height: 10px; } 50% { height: 6px; } }
+        @keyframes eq3 { 0%, 100% { height: 15px; } 50% { height: 8px; } }
+        @keyframes eq4 { 0%, 100% { height: 7px; } 50% { height: 20px; } }
+        @keyframes eq5 { 0%, 100% { height: 12px; } 50% { height: 5px; } }
+
+        .equalizer.paused .eq-bar {
+            animation-play-state: paused;
+            height: 5px !important;
+        }
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
         header {
             text-align: center;
             padding: 40px 20px 30px;
@@ -321,18 +461,58 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-secondary);
             margin-top: 60px;
+            padding-bottom: 80px;
         }
 
         @media (max-width: 768px) {
             .cases-menu { grid-template-columns: 1fr; }
             .case-detail-image-container { height: 70vh; }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                justify-content: center;
+                padding: 8px 15px;
+            }
+
+            .volume-slider {
+                width: 60px;
+            }
+
+            .music-info {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
+<!-- ===== АУДИО ЭЛЕМЕНТ ===== -->
+<audio id="bgMusic" loop preload="auto">
+    <source src="music.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+</audio>
+
+<!-- ===== МУЗЫКАЛЬНЫЙ ПЛЕЕР ===== -->
+<div class="music-player" id="musicPlayer">
+    <button class="music-btn" id="playBtn" onclick="toggleMusic()">▶️</button>
+    <div class="equalizer paused" id="equalizer">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+    </div>
+    <div class="music-info">
+        <span class="music-title">🎵 Саундтрек</span>
+        <span class="music-status" id="musicStatus">Нажмите для воспроизведения</span>
+    </div>
+    <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="30" oninput="changeVolume(this.value)">
+</div>
+
 <header>
-    <div class="badge">️ СЕКРЕТНОЕ ДОСЬЕ</div>
+    <div class="badge">🔒 СЕКРЕТНОЕ ДОСЬЕ</div>
     <h1>Криминалистические Загадки</h1>
     <p class="subtitle">ВЫБЕРИТЕ ДЕЛО ДЛЯ РАССЛЕДОВАНИЯ</p>
 </header>
@@ -448,7 +628,7 @@
             </div>
             <div class="case-question">Кто из присутствующих убил человека в туалете?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint2')"> Подсказка</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint2')">💡 Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol2')">⚖️ Ответ</button>
             </div>
             <div id="hint2" class="hint-box">
@@ -483,7 +663,7 @@
             </div>
             <div id="sol3" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">️ ОТВЕТ: УБИЙСТВО</div>
+                    <div class="verdict-title">⚠️ ОТВЕТ: УБИЙСТВО</div>
                     <p class="verdict-text">А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!</p>
                 </div>
             </div>
@@ -577,7 +757,7 @@
             <div class="case-question">Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint6')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol6')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol6')">⚖️ Ответ</button>
             </div>
             <div id="hint6" class="hint-box">
                 <div class="hint-content">Внимательно рассмотрите билет в руках одного из подозреваемых.</div>
@@ -604,7 +784,7 @@
             <div class="case-question">Кто разбил стекло: мужчина или женщина?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint7')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol7')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol7')">⚖️ Ответ</button>
             </div>
             <div id="hint7" class="hint-box">
                 <div class="hint-content">Сравните рисунок протекторов шин на земле возле обоих автомобилей.</div>
@@ -653,11 +833,62 @@
     </p>
     <p>Ни один студент-юрист не пострадал при создании этого сайта. 😎</p>
     <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">
-        Все совпадения с реальными преступлениями случайны. Или нет. ️‍♂️
+        Все совпадения с реальными преступлениями случайны. Или нет. 🕵️♂️
     </p>
 </footer>
 
 <script>
+    // ===== МУЗЫКАЛЬНЫЙ ПЛЕЕР =====
+    const bgMusic = document.getElementById('bgMusic');
+    const playBtn = document.getElementById('playBtn');
+    const equalizer = document.getElementById('equalizer');
+    const musicStatus = document.getElementById('musicStatus');
+    let isPlaying = false;
+
+    // Установка начальной громкости
+    bgMusic.volume = 0.3;
+
+    function toggleMusic() {
+        if (isPlaying) {
+            bgMusic.pause();
+            playBtn.textContent = '▶️';
+            playBtn.classList.remove('playing');
+            equalizer.classList.add('paused');
+            musicStatus.textContent = 'Пауза';
+            isPlaying = false;
+        } else {
+            bgMusic.play().then(() => {
+                playBtn.textContent = '⏸️';
+                playBtn.classList.add('playing');
+                equalizer.classList.remove('paused');
+                musicStatus.textContent = 'Воспроизводится...';
+                isPlaying = true;
+            }).catch(err => {
+                console.log('Ошибка воспроизведения:', err);
+                musicStatus.textContent = 'Файл не найден';
+            });
+        }
+    }
+
+    function changeVolume(value) {
+        bgMusic.volume = value / 100;
+    }
+
+    // Автозапуск музыки при первом клике на страницу
+    document.addEventListener('click', function initAudio() {
+        if (!isPlaying && bgMusic.readyState > 0) {
+            bgMusic.play().then(() => {
+                playBtn.textContent = '⏸️';
+                playBtn.classList.add('playing');
+                equalizer.classList.remove('paused');
+                musicStatus.textContent = 'Воспроизводится...';
+                isPlaying = true;
+            }).catch(() => {});
+        }
+        document.removeEventListener('click', initAudio);
+    }, { once: true });
+
+    // ===== НАВИГАЦИЯ ПО ДЕЛАМ =====
     function openCase(caseId) {
         document.getElementById('casesMenu').style.display = 'none';
         document.getElementById('coverBanner').style.display = 'none';
@@ -697,7 +928,7 @@
             btn.style.background = 'linear-gradient(135deg, #e63946 0%, #c1121f 100%)';
         } else {
             solution.classList.add('visible');
-            btn.innerHTML = ' Закрыть';
+            btn.innerHTML = '✕ Закрыть';
             btn.style.background = '#0a0e1a';
         }
     }
@@ -705,3 +936,55 @@
 
 </body>
 </html>
+```
+
+---
+
+## 🎵 Что нужно добавить в папку:
+
+### Шаг 1: Скачайте музыку
+Вам нужен файл **`music.mp3`** — любая атмосферная детективная/триллерная музыка.
+
+**Где взять бесплатно:**
+- [Pixabay Music](https://pixabay.com/music/) — поиск: *"detective"*, *"mystery"*, *"noir"*, *"thriller"*
+- [FreePD](https://freepd.com/) — категория *"Suspense"*
+- [Incompetech](https://incompetech.com/music/) — Kevin MacLeod (укажите авторство!)
+
+**Рекомендации по трекам:**
+| Название | Атмосфера |
+|----------|-----------|
+| "Dark Noir" | Классический нуар 🌃 |
+| "Investigation Theme" | Расследование 🔍 |
+| "Mysterious Tension" | Напряжение ⚡ |
+| "Rainy Night Detective" | Дождливая ночь 🌧️ |
+
+### Шаг 2: Положите файл в папку
+Скопируйте скачанный MP3-файл в папку `detective-quiz` и переименуйте его в **`music.mp3`**.
+
+### Шаг 3: Загрузите всё на GitHub
+Перетащите **все файлы** (включая `music.mp3`) в репозиторий crime-quiz.
+
+---
+
+## ✨ Что нового в коде:
+
+| Функция | Описание |
+|---------|----------|
+| 🎛️ Кнопка Play/Pause | Плавающая внизу справа |
+| 📊 Эквалайзер | Анимированные полоски при воспроизведении |
+| 🔊 Регулятор громкости | Ползунок для настройки звука |
+| ▶️ Автозапуск | Музыка стартует при первом клике на страницу |
+| 🔁 Зацикливание | Трек играет бесконечно (`loop`) |
+| 📱 Мобильная версия | Плеер адаптируется под маленькие экраны |
+
+---
+
+## ⚠️ Важные моменты:
+
+1. **Браузеры блокируют автозвук** — поэтому музыка запустится только после первого клика пользователя на страницу. Это нормально!
+
+2. **Размер файла** — старайтесь использовать MP3 до 5–10 МБ, иначе страница будет долго грузиться.
+
+3. **Формат** — поддерживается `.mp3`, `.ogg`, `.wav`. Лучше всего `.mp3` (совместимость со всеми браузерами).
+
+Если хотите, я могу подобрать конкретную ссылку на бесплатный трек! 🎶
