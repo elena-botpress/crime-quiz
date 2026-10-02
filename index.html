@@ -17,11 +17,7 @@
             --card-bg: rgba(21, 27, 45, 0.9);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -71,6 +67,23 @@
             padding: 30px 20px;
         }
 
+        .cover-banner {
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 3px solid var(--accent-gold);
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+
+        .cover-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         .intro {
             background: var(--card-bg);
             backdrop-filter: blur(10px);
@@ -89,8 +102,8 @@
 
         .cases-menu {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
             margin-bottom: 30px;
         }
 
@@ -111,7 +124,7 @@
 
         .case-menu-image {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: cover;
             filter: grayscale(70%);
             transition: filter 0.3s ease;
@@ -121,9 +134,7 @@
             filter: grayscale(0%);
         }
 
-        .case-menu-content {
-            padding: 15px;
-        }
+        .case-menu-content { padding: 15px; }
 
         .case-menu-number {
             font-family: 'Special Elite', cursive;
@@ -134,7 +145,7 @@
 
         .case-menu-title {
             font-family: 'Crimson Text', serif;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-primary);
         }
 
@@ -148,19 +159,11 @@
             animation: slideDown 0.5s ease;
         }
 
-        .case-detail.active {
-            display: block;
-        }
+        .case-detail.active { display: block; }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .case-detail-image-container {
@@ -179,42 +182,40 @@
             display: block;
         }
 
-        /* Стили для наложения двух картинок */
         .dual-image-container {
             position: relative;
             width: 100%;
             max-height: 70vh;
             overflow: hidden;
             background: var(--bg-secondary);
+            min-height: 400px;
         }
 
         .dual-image {
             position: absolute;
-            width: 70%;
+            width: 75%;
             height: auto;
-            max-height: 60vh;
+            max-height: 65vh;
             object-fit: contain;
             border: 3px solid var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
 
         .dual-image-1 {
             top: 5%;
             left: 5%;
-            transform: rotate(-3deg);
+            transform: rotate(-4deg);
             z-index: 1;
         }
 
         .dual-image-2 {
             bottom: 5%;
             right: 5%;
-            transform: rotate(3deg);
+            transform: rotate(4deg);
             z-index: 2;
         }
 
-        .case-detail-content {
-            padding: 25px;
-        }
+        .case-detail-content { padding: 25px; }
 
         .case-detail-header {
             display: flex;
@@ -248,11 +249,12 @@
         }
 
         .case-question {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.6;
             margin-bottom: 25px;
             color: var(--text-primary);
             font-weight: 600;
+            font-style: italic;
         }
 
         .btn-group {
@@ -299,25 +301,16 @@
             box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
         }
 
-        .hint-box, .solution-box {
+        .solution-box {
             max-height: 0;
             overflow: hidden;
             transition: all 0.5s ease;
             margin-top: 0;
         }
 
-        .hint-box.visible, .solution-box.visible {
-            max-height: 500px;
+        .solution-box.visible {
+            max-height: 1000px;
             margin-top: 20px;
-        }
-
-        .hint-content {
-            background: rgba(69, 123, 157, 0.15);
-            border-left: 4px solid var(--accent-blue);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            color: var(--text-secondary);
         }
 
         .verdict {
@@ -339,6 +332,7 @@
             color: var(--text-primary);
             line-height: 1.8;
             font-size: 1.05rem;
+            white-space: pre-wrap;
         }
 
         footer {
@@ -350,41 +344,38 @@
         }
 
         @media (max-width: 768px) {
-            .cases-menu {
-                grid-template-columns: 1fr;
-            }
-            
-            .dual-image {
-                width: 85%;
-            }
+            .cases-menu { grid-template-columns: 1fr; }
+            .dual-image { width: 85%; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="badge">⚖️ СЕКРЕТНОЕ ДОСЬЕ</div>
+    <div class="badge">️ СЕКРЕТНОЕ ДОСЬЕ</div>
     <h1>Криминалистические Загадки</h1>
     <p class="subtitle">ВЫБЕРИТЕ ДЕЛО ДЛЯ РАССЛЕДОВАНИЯ</p>
 </header>
 
 <div class="container">
-    <div class="intro">
-        <h2>📋 Инструкция</h2>
-        <p>Выберите любое дело из списка ниже. Внимательно изучите картинку, найдите нестыковки и вынесите свой вердикт. Используйте подсказки, если зашли в тупик!</p>
+    
+    <div class="cover-banner" id="coverBanner">
+        <img src="обложка.jpg" alt="Обложка квеста">
     </div>
 
-    <!-- MENU -->
+    <div class="intro">
+        <h2>📋 Инструкция</h2>
+        <p>Выберите любое дело из списка ниже. Внимательно изучите картинку и вынесите свой вердикт!</p>
+    </div>
+
     <div class="cases-menu" id="casesMenu">
-        
         <div class="case-menu-item" onclick="openCase('case1')">
             <img src="1.jpg" alt="Дело 1" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 01</div>
-                <h3 class="case-menu-title">Самоубийство или убийство?</h3>
+                <h3 class="case-menu-title">Это самоубийство? Это убийство?</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case2')">
             <img src="2.jpg" alt="Дело 2" class="case-menu-image">
             <div class="case-menu-content">
@@ -392,7 +383,6 @@
                 <h3 class="case-menu-title">Убийство в туалете</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case3')">
             <img src="3.jpg" alt="Дело 3" class="case-menu-image">
             <div class="case-menu-content">
@@ -400,7 +390,6 @@
                 <h3 class="case-menu-title">Кастрюля и записка</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case4')">
             <img src="4.jpg" alt="Дело 4" class="case-menu-image">
             <div class="case-menu-content">
@@ -408,7 +397,6 @@
                 <h3 class="case-menu-title">Девушка-левша</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case5')">
             <img src="5.jpg" alt="Дело 5" class="case-menu-image">
             <div class="case-menu-content">
@@ -416,7 +404,6 @@
                 <h3 class="case-menu-title">Банкрот и пистолет</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case6')">
             <img src="6.jpg" alt="Дело 6" class="case-menu-image">
             <div class="case-menu-content">
@@ -424,7 +411,6 @@
                 <h3 class="case-menu-title">Исчезнувший документ</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case7')">
             <img src="7.0.jpg" alt="Дело 7" class="case-menu-image">
             <div class="case-menu-content">
@@ -432,7 +418,6 @@
                 <h3 class="case-menu-title">Разбитое стекло</h3>
             </div>
         </div>
-
         <div class="case-menu-item" onclick="openCase('case8')">
             <img src="8.jpg" alt="Дело 8" class="case-menu-image">
             <div class="case-menu-content">
@@ -440,7 +425,6 @@
                 <h3 class="case-menu-title">Пропавшая статуэтка</h3>
             </div>
         </div>
-
     </div>
 
     <!-- CASE 1 -->
@@ -450,33 +434,25 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Самоубийство или убийство?</h2>
+                <h2 class="case-detail-title">Дело № 1</h2>
                 <button class="btn-back" onclick="closeCase('case1')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Что произошло на картинке? Самоубийство или убийство?
-            </div>
-
+            <div class="case-question">Это самоубийство? Это убийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint1')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol1')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol1')">️ Ответ</button>
             </div>
-
-            <div id="hint1" class="hint-box">
-                <div class="hint-content">
-                    Обратите внимание на следы борьбы, количество стаканов и расположение предметов на кровати.
+            <div id="hint1" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Внимательно рассмотрите все детали на картинке.</p>
                 </div>
             </div>
-
             <div id="sol1" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ ЭТО БЫЛО УБИЙСТВО!
-                    </div>
-                    <p class="verdict-text">
-                        В комнате есть следы борьбы — часы разбиты. Два стакана с водой указывают на присутствие двух человек, что также наводит на мысль о том, что убийца известен жертве. На кровати лежат книга и ручка, что указывает на то, что покойный читал, а предсмертная записка была написана другой ручкой, которая, по-видимому, была подброшена. И кстати, костыли находятся слишком далеко от мужчины!
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО БЫЛО... УБИЙСТВО!</div>
+                    <p class="verdict-text">Присмотритесь внимательнее. Во-первых, в комнате есть следы борьбы, так как часы разбиты. Два стакана с водой указывают на присутствие двух человек, что также наводит на мысль о том, что убийца известен жертве.
+
+А на кровати лежат книга и ручка, что указывает на то, что покойный читал, а предсмертная записка была написана другой ручкой, которая, по-видимому, была подброшена. И кстати, костыли находятся слишком далеко от мужчины!</p>
                 </div>
             </div>
         </div>
@@ -489,33 +465,23 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Убийство в туалете</h2>
+                <h2 class="case-detail-title">Дело № 2</h2>
                 <button class="btn-back" onclick="closeCase('case2')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Кто из присутствующих убил человека в туалете?
-            </div>
-
+            <div class="case-question">Кто из присутствующих убил человека в туалете?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint2')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol2')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol2')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint2" class="hint-box">
-                <div class="hint-content">
-                    Обратите внимание на внешний вид каждого человека, его одежду и расположение относительно туалета.
+            <div id="hint2" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Внимательно рассмотрите всех людей на картинке.</p>
                 </div>
             </div>
-
             <div id="sol2" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ УБИЙЦА — ПОД НОМЕРОМ 3!
-                    </div>
-                    <p class="verdict-text">
-                        Мужчина напряжён. Он находится рядом с туалетом. У него нет ножа. Его рубашка порвана и кусочек ткани от рубашки находится рядом с жертвой. У него царапина на шее. Какие ещё нужны улики?
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: БРАВО, ШЕРЛОК!</div>
+                    <p class="verdict-text">Убийца скрывается под номером 3. Вот главные признаки: мужчина напряжён. Он находится рядом с туалетом. У него нет ножа. Его рубашка порвана и кусочек ткани от рубашки находится рядом с жертвой. У него царапина на шее. Какие ещё нужны улики?</p>
                 </div>
             </div>
         </div>
@@ -528,33 +494,23 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Кастрюля и записка</h2>
+                <h2 class="case-detail-title">Дело № 3</h2>
                 <button class="btn-back" onclick="closeCase('case3')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Что произошло: убийство или самоубийство?
-            </div>
-
+            <div class="case-question">Что произошло: убийство или самоубийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint3')"> Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol3')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint3" class="hint-box">
-                <div class="hint-content">
-                    Зачем человеку ставить кастрюлю вариться, если он собирается застрелиться? Обратите внимание на цвета.
+            <div id="hint3" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Обратите внимание на предметы вокруг.</p>
                 </div>
             </div>
-
             <div id="sol3" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ УБИЙСТВО!
-                    </div>
-                    <p class="verdict-text">
-                        А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: УБИЙСТВО</div>
+                    <p class="verdict-text">А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!</p>
                 </div>
             </div>
         </div>
@@ -567,33 +523,31 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Девушка-левша</h2>
+                <h2 class="case-detail-title">Дело № 4</h2>
                 <button class="btn-back" onclick="closeCase('case4')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Надо классифицировать эту историю как убийство или девушка сама распорядилась своей жизнью, без вмешательства посторонних?
-            </div>
-
+            <div class="case-question">Надо классифицировать эту историю как убийство или девушка сама распорядилась своей жизнью, без вмешательства посторонних? Время пошло!</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint4')"> Подсказка</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint4')">💡 Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol4')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint4" class="hint-box">
-                <div class="hint-content">
-                    Обратите внимание на расположение предметов в комнате и на то, какой рукой девушка держит сигарету.
+            <div id="hint4" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Посмотрите на расположение предметов в комнате.</p>
                 </div>
             </div>
-
             <div id="sol4" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ️ УБИЙСТВО (Инсценировка самоубийства)
-                    </div>
-                    <p class="verdict-text">
-                        Беглого осмотра достаточно, чтобы понять: девушка сидела на табуретке спиной к окну или стене и совершила выстрел из пистолета правой рукой. Хотя пистолет в правой руке, совершенно очевидно, что девушка — левша. Лампа справа. Ручка слева. Банка воды слева. Пепельница слева. Да и сигарета тоже в левой руке. Зачем брать пистолет правой рукой? Да ещё не докурив начатую сигарету, что тоже абсурдно. Попадание гильзы на подоконник маловероятно при такой картине преступления. За окном нет света, тем не менее девушка со слабым зрением писала записку, не включив лампу. Любое из этих наблюдений в итоге указывает на убийство.
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО УБИЙСТВО (Инсценировка)</div>
+                    <p class="verdict-text">Беглого осмотра достаточно, чтобы понять: девушка сидела на табуретке спиной к окну или стене и совершила выстрел из пистолета правой рукой.
+
+Далее начинают вылезать подозрительные нестыковки. Хотя пистолет в правой руке, совершенно очевидно, что девушка — левша. Лампа справа. Ручка слева. Банка воды слева. Пепельница слева. Да и сигарета тоже в левой руке. Зачем брать пистолет правой рукой? Да ещё не докурив начатую сигарету, что тоже абсурдно.
+
+Попадание гильзы на подоконник маловероятно при такой картине преступления. Впрочем, не исключено, что эта гильза не имеет отношения к роковому выстрелу.
+
+За окном нет света, тем не менее девушка со слабым зрением писала записку, не включив лампу. Или записку она не писала, или эта записка написано давно, еще в светлое время суток, или шнур лампы был выдернут во время потасовки с вероятным убийцей. Каков бы ни был расклад, любое из этих наблюдений в итоге указывает на убийство.
+
+Таким образом, уже беглый осмотр места происшествия дает основания начинать расследование по убойной статье.</p>
                 </div>
             </div>
         </div>
@@ -606,33 +560,35 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Банкрот и пистолет</h2>
+                <h2 class="case-detail-title">Дело № 5</h2>
                 <button class="btn-back" onclick="closeCase('case5')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Детективам всегда приходится нелегко, однако порой самое сложное даже не найти убийцу или улики, а понять: было ли это убийство, или человек сделал это сам с собой. Это именно такой случай, вы поможете?
-            </div>
-
+            <div class="case-question">Детективам всегда приходится нелегко, однако порой самое сложное даже не найти убийцу или улики, а понять: было ли это убийство, или человек сделал это сам с собой. Это именно такой случай, вы поможете?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint5')">💡 Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol5')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint5" class="hint-box">
-                <div class="hint-content">
-                    Посмотрите на расположение вещей на столе и в какой руке находится пистолет. Обратите внимание на окно.
+            <div id="hint5" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Посмотрите на расположение вещей и окно.</p>
                 </div>
             </div>
-
             <div id="sol5" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ УБИЙСТВО!
-                    </div>
-                    <p class="verdict-text">
-                        Судя по графику на стене мужчина оказался банкротом. Вероятно, с горя он напился, после чего, в приступе ярости кинул бутылку в стену и разбросал все вещи. Позже он написал предсмертную записку и положил её на стол. Достал пистолет и застрелился. НО! В комнате много признаков борьбы. За окном мы видим бегущего человека и, вероятно, он выпрыгнул после преступления в правое окно. Наша жертва — левша. Этот вывод можно сделать из расположения стакана воды и ноутбука находящегося на левой стороне стола, а ещё по расположению ящиков стола. Но убийца не подозревая, что жертва был левшой, вложил пистолет в правую руку. Исходя из всех замеченных деталей, становится ясно, что в кабинете находились два человека. Кажется, это было убийство!
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО БЫЛО УБИЙСТВО!</div>
+                    <p class="verdict-text">Чтобы получить ответ, давайте вместе подумаем. Начнем с теории о том, что человек сам отнял у себя жизнь.
+
+1. Судя по графику на стене мужчина оказался банкротом. Вероятно, с горя он напился, после чего, в приступе ярости кинул бутылку в стену и разбросал все вещи.
+2. Позже он написал предсмертную записку и положил её на стол.
+3. Достал пистолет и застрелился.
+
+А что говорят доказательства в пользу убийства? Как оно могло произойти?
+
+1. Важно обратить внимание на то, что в комнате много признаков борьбы.
+2. За окном мы видим бегущего человека и, вероятно, он выпрыгнул после преступления в правое окно.
+3. Любопытно заметить, что наша жертва — левша. Этот вывод можно сделать из расположения стакана воды и ноутбука находящегося на левой стороне стола, а ещё по расположению ящиков стола. Но убийца не подозревая, что жертва был левшой, вложил пистолет в правую руку.
+
+Исходя из всех замеченных деталей, становится ясно, что в кабинете находились два человека. Кажется, это было убийство!</p>
                 </div>
             </div>
         </div>
@@ -645,33 +601,23 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Исчезнувший документ</h2>
+                <h2 class="case-detail-title">Дело № 6</h2>
                 <button class="btn-back" onclick="closeCase('case6')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?
-            </div>
-
+            <div class="case-question">Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint6')"> Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol6')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint6" class="hint-box">
-                <div class="hint-content">
-                    Обратите внимание на билеты и документы, которые показывают подозреваемые.
+            <div id="hint6" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Посмотрите на документы в руках подозреваемых.</p>
                 </div>
             </div>
-
             <div id="sol6" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ ПРЕСТУПНИК — ВИКТОР!
-                    </div>
-                    <p class="verdict-text">
-                        Преступник Виктор, потому что на его билете в кино не оторван корешок. Значит, он не был в кино и солгал о своём алиби!
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ПРЕСТУПНИК — ВИКТОР!</div>
+                    <p class="verdict-text">Преступник Виктор, потому что на его билете в кино не оторван корешок.</p>
                 </div>
             </div>
         </div>
@@ -685,33 +631,23 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Разбитое стекло</h2>
+                <h2 class="case-detail-title">Дело № 7</h2>
                 <button class="btn-back" onclick="closeCase('case7')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Кто разбил стекло: мужчина или женщина?
-            </div>
-
+            <div class="case-question">Кто разбил стекло: мужчина или женщина?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint7')"> Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol7')">⚖️ Ответ</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint7')">💡 Подсказка</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol7')">️ Ответ</button>
             </div>
-
-            <div id="hint7" class="hint-box">
-                <div class="hint-content">
-                    Посмотрите на рисунок протекторов шин на обеих картинках.
+            <div id="hint7" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Посмотрите на следы на земле.</p>
                 </div>
             </div>
-
             <div id="sol7" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ СТЕКЛО РАЗБИЛА ЖЕНЩИНА!
-                    </div>
-                    <p class="verdict-text">
-                        Посмотрите на рисунок протекторов шин. Стекло разбила женщина — её автомобиль оставил характерные следы на месте преступления.
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: СТЕКЛО РАЗБИЛА ЖЕНЩИНА!</div>
+                    <p class="verdict-text">Посмотрите на рисунок протекторов шин. Стекло разбила женщина — её автомобиль оставил характерные следы на месте преступления.</p>
                 </div>
             </div>
         </div>
@@ -724,33 +660,23 @@
         </div>
         <div class="case-detail-content">
             <div class="case-detail-header">
-                <h2 class="case-detail-title">Пропавшая статуэтка</h2>
+                <h2 class="case-detail-title">Дело № 8</h2>
                 <button class="btn-back" onclick="closeCase('case8')">← Назад к меню</button>
             </div>
-            
-            <div class="case-question">
-                Потерпевшая сообщила, что у неё после вечеринки пропала ценная статуэтка. Она показала фотографии, которые сделала на вечеринке. Один из офицеров сразу понял, кто украл статуэтку. А вы поняли?
-            </div>
-
+            <div class="case-question">Потерпевшая сообщила, что у неё после вечеринки пропала ценная статуэтка. Она показала фотографии, которые сделала на вечеринке. Один из офицеров сразу понял, кто украл статуэтку. А вы поняли?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint8')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol8')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol8')">⚖️ Ответ</button>
             </div>
-
-            <div id="hint8" class="hint-box">
-                <div class="hint-content">
-                    Обратите внимание на одежду и аксессуары гостей, особенно на головные уборы.
+            <div id="hint8" class="solution-box">
+                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
+                    <p class="verdict-text">Посмотрите на одежду и аксессуары гостей.</p>
                 </div>
             </div>
-
             <div id="sol8" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">
-                        ⚠️ ВОР — ДАМА В ШЛЯПЕ!
-                    </div>
-                    <p class="verdict-text">
-                        Дама в шляпе спрятала статуэтку под шляпой! Обратите внимание на форму и размер её головного убора — он подозрительно большой и объёмный.
-                    </p>
+                    <div class="verdict-title">⚠️ ОТВЕТ: ВОР — ДАМА В ШЛЯПЕ!</div>
+                    <p class="verdict-text">Дама в шляпе спрятала статуэтку под шляпой!</p>
                 </div>
             </div>
         </div>
@@ -763,14 +689,12 @@
         🔍 КРИМИНАЛИСТИЧЕСКИЙ КВЕСТ
     </p>
     <p>© 2026 Кафедра уголовного процесса и криминалистики</p>
-    <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">
-        Материалы основаны на учебных делах и классических задачах
-    </p>
 </footer>
 
 <script>
     function openCase(caseId) {
         document.getElementById('casesMenu').style.display = 'none';
+        document.getElementById('coverBanner').style.display = 'none';
         document.getElementById(caseId).classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -778,13 +702,13 @@
     function closeCase(caseId) {
         document.getElementById(caseId).classList.remove('active');
         document.getElementById('casesMenu').style.display = 'grid';
+        document.getElementById('coverBanner').style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleHint(hintId) {
         const hint = document.getElementById(hintId);
         const btn = event.target;
-        
         if (hint.classList.contains('visible')) {
             hint.classList.remove('visible');
             btn.innerHTML = '💡 Подсказка';
@@ -801,7 +725,6 @@
     function toggleSolution(solId) {
         const solution = document.getElementById(solId);
         const btn = event.target;
-        
         if (solution.classList.contains('visible')) {
             solution.classList.remove('visible');
             btn.innerHTML = '⚖️ Ответ';
