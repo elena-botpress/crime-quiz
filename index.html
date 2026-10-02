@@ -301,16 +301,25 @@
             box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
         }
 
-        .solution-box {
+        .hint-box, .solution-box {
             max-height: 0;
             overflow: hidden;
             transition: all 0.5s ease;
             margin-top: 0;
         }
 
-        .solution-box.visible {
+        .hint-box.visible, .solution-box.visible {
             max-height: 1000px;
             margin-top: 20px;
+        }
+
+        .hint-content {
+            background: rgba(69, 123, 157, 0.15);
+            border-left: 4px solid var(--accent-blue);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-secondary);
         }
 
         .verdict {
@@ -352,7 +361,7 @@
 <body>
 
 <header>
-    <div class="badge">️ СЕКРЕТНОЕ ДОСЬЕ</div>
+    <div class="badge">⚖️ СЕКРЕТНОЕ ДОСЬЕ</div>
     <h1>Криминалистические Загадки</h1>
     <p class="subtitle">ВЫБЕРИТЕ ДЕЛО ДЛЯ РАССЛЕДОВАНИЯ</p>
 </header>
@@ -365,7 +374,7 @@
 
     <div class="intro">
         <h2>📋 Инструкция</h2>
-        <p>Выберите любое дело из списка ниже. Внимательно изучите картинку и вынесите свой вердикт!</p>
+        <p>Внимательно изучите картинку и вынесите свой вердикт!</p>
     </div>
 
     <div class="cases-menu" id="casesMenu">
@@ -387,14 +396,14 @@
             <img src="3.jpg" alt="Дело 3" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 03</div>
-                <h3 class="case-menu-title">Кастрюля и записка</h3>
+                <h3 class="case-menu-title">Труп в комнате</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case4')">
             <img src="4.jpg" alt="Дело 4" class="case-menu-image">
             <div class="case-menu-content">
                 <div class="case-menu-number">ДЕЛО № 04</div>
-                <h3 class="case-menu-title">Девушка-левша</h3>
+                <h3 class="case-menu-title">Загадочное самоубийство?</h3>
             </div>
         </div>
         <div class="case-menu-item" onclick="openCase('case5')">
@@ -440,12 +449,10 @@
             <div class="case-question">Это самоубийство? Это убийство?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint1')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol1')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol1')">⚖️ Ответ</button>
             </div>
-            <div id="hint1" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Внимательно рассмотрите все детали на картинке.</p>
-                </div>
+            <div id="hint1" class="hint-box">
+                <div class="hint-content">Обратите внимание на разбитые часы и расстояние между костылями и мужчиной.</div>
             </div>
             <div id="sol1" class="solution-box">
                 <div class="verdict">
@@ -470,13 +477,11 @@
             </div>
             <div class="case-question">Кто из присутствующих убил человека в туалете?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint2')">💡 Подсказка</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint2')"> Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol2')">⚖️ Ответ</button>
             </div>
-            <div id="hint2" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Внимательно рассмотрите всех людей на картинке.</p>
-                </div>
+            <div id="hint2" class="hint-box">
+                <div class="hint-content">Обратите внимание на порванную рубашку одного из мужчин и царапину на его шее.</div>
             </div>
             <div id="sol2" class="solution-box">
                 <div class="verdict">
@@ -499,17 +504,15 @@
             </div>
             <div class="case-question">Что произошло: убийство или самоубийство?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint3')"> Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol3')">⚖️ Ответ</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint3')">💡 Подсказка</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol3')">️ Ответ</button>
             </div>
-            <div id="hint3" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Обратите внимание на предметы вокруг.</p>
-                </div>
+            <div id="hint3" class="hint-box">
+                <div class="hint-content">Обратите внимание на кастрюлю на плите и цвет ручки рядом с запиской.</div>
             </div>
             <div id="sol3" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: УБИЙСТВО</div>
+                    <div class="verdict-title">️ ОТВЕТ: УБИЙСТВО</div>
                     <p class="verdict-text">А зачем ему кастрюлю вариться ставить, если застрелиться хотел? Ещё и ручка красная, а цвет записи на бумаге (предсмертной записки) — синий. Нестыковка!</p>
                 </div>
             </div>
@@ -529,16 +532,14 @@
             <div class="case-question">Надо классифицировать эту историю как убийство или девушка сама распорядилась своей жизнью, без вмешательства посторонних? Время пошло!</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint4')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol4')">⚖️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol4')">️ Ответ</button>
             </div>
-            <div id="hint4" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Посмотрите на расположение предметов в комнате.</p>
-                </div>
+            <div id="hint4" class="hint-box">
+                <div class="hint-content">Обратите внимание, в какой руке девушка держит сигарету, и где стоит лампа.</div>
             </div>
             <div id="sol4" class="solution-box">
                 <div class="verdict">
-                    <div class="verdict-title">⚠️ ОТВЕТ: ЭТО УБИЙСТВО (Инсценировка)</div>
+                    <div class="verdict-title">️ ОТВЕТ: ЭТО УБИЙСТВО (Инсценировка)</div>
                     <p class="verdict-text">Беглого осмотра достаточно, чтобы понять: девушка сидела на табуретке спиной к окну или стене и совершила выстрел из пистолета правой рукой.
 
 Далее начинают вылезать подозрительные нестыковки. Хотя пистолет в правой руке, совершенно очевидно, что девушка — левша. Лампа справа. Ручка слева. Банка воды слева. Пепельница слева. Да и сигарета тоже в левой руке. Зачем брать пистолет правой рукой? Да ещё не докурив начатую сигарету, что тоже абсурдно.
@@ -568,10 +569,8 @@
                 <button class="btn btn-hint" onclick="toggleHint('hint5')">💡 Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol5')">⚖️ Ответ</button>
             </div>
-            <div id="hint5" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Посмотрите на расположение вещей и окно.</p>
-                </div>
+            <div id="hint5" class="hint-box">
+                <div class="hint-content">Обратите внимание, в какой руке жертва держит пистолет, и посмотрите в окно.</div>
             </div>
             <div id="sol5" class="solution-box">
                 <div class="verdict">
@@ -606,13 +605,11 @@
             </div>
             <div class="case-question">Из кабинета исчез очень важный документ. Накануне вечером он лежал на столе. Трое подозреваемых сказали: Виктор сказал, что провёл предыдущий вечер в кино. Жанна ужинала со своими друзьями. А Захар ходил в художественную галерею. Кто преступник?</div>
             <div class="btn-group">
-                <button class="btn btn-hint" onclick="toggleHint('hint6')"> Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol6')">⚖️ Ответ</button>
+                <button class="btn btn-hint" onclick="toggleHint('hint6')">💡 Подсказка</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol6')">️ Ответ</button>
             </div>
-            <div id="hint6" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Посмотрите на документы в руках подозреваемых.</p>
-                </div>
+            <div id="hint6" class="hint-box">
+                <div class="hint-content">Внимательно рассмотрите билет в руках одного из подозреваемых.</div>
             </div>
             <div id="sol6" class="solution-box">
                 <div class="verdict">
@@ -637,12 +634,10 @@
             <div class="case-question">Кто разбил стекло: мужчина или женщина?</div>
             <div class="btn-group">
                 <button class="btn btn-hint" onclick="toggleHint('hint7')">💡 Подсказка</button>
-                <button class="btn btn-solution" onclick="toggleSolution('sol7')">️ Ответ</button>
+                <button class="btn btn-solution" onclick="toggleSolution('sol7')">⚖️ Ответ</button>
             </div>
-            <div id="hint7" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Посмотрите на следы на земле.</p>
-                </div>
+            <div id="hint7" class="hint-box">
+                <div class="hint-content">Сравните рисунок протекторов шин на земле возле обоих автомобилей.</div>
             </div>
             <div id="sol7" class="solution-box">
                 <div class="verdict">
@@ -668,10 +663,8 @@
                 <button class="btn btn-hint" onclick="toggleHint('hint8')">💡 Подсказка</button>
                 <button class="btn btn-solution" onclick="toggleSolution('sol8')">⚖️ Ответ</button>
             </div>
-            <div id="hint8" class="solution-box">
-                <div class="verdict" style="background: rgba(69, 123, 157, 0.15); border-left-color: var(--accent-blue);">
-                    <p class="verdict-text">Посмотрите на одежду и аксессуары гостей.</p>
-                </div>
+            <div id="hint8" class="hint-box">
+                <div class="hint-content">Обратите внимание на головной убор одной из дам на фотографии.</div>
             </div>
             <div id="sol8" class="solution-box">
                 <div class="verdict">
