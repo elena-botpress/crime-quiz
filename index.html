@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Криминалистические Загадки | Станьте Детективом</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Inter:wght@300;400;600&family=Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #151b2d;
+            --accent-gold: #d4af37;
+            --accent-red: #e63946;
+            --accent-blue: #457b9d;
+            --text-primary: #f1faee;
+            --text-secondary: #a8dadc;
+            --card-bg: rgba(21, 27, 45, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(230, 57, 70, 0.05) 0%, transparent 50%);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 80px 20px 60px;
+            position: relative;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--accent-red);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-family: 'Special Elite', cursive;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-left: 4px solid var(--accent-gold);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro::before {
+            content: '🔍';
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        .intro h2 {
+            font-family: 'Crimson Text', serif;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        /* Cases Grid */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        /* Case Card */
+        .case-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 280px;
+            background: var(--bg-secondary);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .case-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(60%) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+
+        .case-card:hover .case-image img {
+            filter: grayscale(0%) contrast(1.2);
+        }
+
+        .case-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent-red);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Special Elite', cursive;
+            font-weight: bold;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .difficulty {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--accent-gold);
+        }
+
+        .case-content {
+            padding: 30px;
+        }
+
+        .case-content h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--accent-gold);
+        }
+
+        .case-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .clues-section {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px dashed var(--accent-gold);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .clues-title {
+            font-family: 'Special Elite', cursive;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .clues-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .clues-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .clues-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-hint {
+            background: transparent;
+            border: 2px solid var(--accent-blue);
+            color: var(--accent-blue);
+        }
+
+        .btn-hint:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+        .btn-solution {
+            background: linear-gradient(135deg, var(--accent-red) 0%, #c1121f 100%);
+            color: white;
+            border: 2px solid var(--accent-red);
+        }
+
+        .btn-solution:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Solution Box */
+        .solution-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+            margin-top: 0;
+        }
+
+        .solution-box.visible {
+            max-height: 500px;
+            margin-top: 20px;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .verdict {
+            background: rgba(230, 57, 70, 0.15);
+            border-left: 4px solid var(--accent-red);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .verdict-title {
+            color: var(--accent-red);
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .verdict-text {
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .hint-box {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            margin-top: 0;
+        }
+
+        .hint-box.visible {
+            max-height: 200px;
+            margin-top: 15px;
+        }
+
+        .hint-content {
+            background: rgba(69, 123, 157, 0.15);
+            border-left: 4px solid var(--accent-blue);
+            padding: 15px;
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        /* Visual Puzzle Section */
+        .visual-puzzle {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 2px solid var(--accent-gold);
+        }
+
+        .visual-puzzle h2 {
+            font-family: 'Crimson Text', serif;
+            color: var(--accent-gold);
+            margin-bottom: 25px;
+            font-size: 2rem;
+        }
+
+        .puzzle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .puzzle-item {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .puzzle-item:hover {
+            border-color: var(--accent-gold);
+            transform: scale(1.02);
+        }
+
+        .puzzle-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .puzzle-answer {
+            padding: 20px;
+        }
+
+        .puzzle-answer h4 {
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-secondary);
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cases-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .case-image {
+                height: 220px;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <header>
+        <div class="badge">⚖️ СЕКРЕТНОЕ ДОСЬЕ</div>
+        <h1>Криминалистические Загадки</h1>
+        <p class="subtitle">СТАНЬТЕ ДЕТЕКТИВОМ • РАСКРОЙТЕ ПРЕСТУПЛЕНИЯ</p>
+    </header>
+
+    <div class="container">
+        <!-- Intro -->
+        <div class="intro fade-in">
+            <h2>📋 Инструкция для следователя</h2>
+            <p>Внимательно изучите каждое дело. Обратите внимание на детали: расположение предметов, показания свидетелей, физические законы. Каждая мелочь может стать ключом к разгадке. Используйте подсказки, если зашли в тупик, и проверьте свой вердикт, открыв решение.</p>
+        </div>
+
+        <!-- Cases Grid -->
+        <div class="cases-grid">
+            
+            <!-- Case 1: Девушка левша -->
+            <div class="case-card fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80" alt="Дело 1">
+                    <div class="case-number">01</div>
+                    <div class="difficulty">🔥 Средний</div>
+                </div>
+                <div class="case-content">
+                    <h3>Загадка комнаты</h3>
+                    <p class="case-description">
+                        Обнаружено тело девушки. Версия: самоубийство. Она сидела на табуретке и совершила выстрел из пистолета правой рукой.
+                    </p>
+                    
+                    <div class="clues-section">
+                        <div class="clues-title">🔍 УЛИКИ НА МЕСТЕ:</div>
+                        <ul class="clues-list">
+                            <li>Лампа находится <strong>справа</strong></li>
+                            <li>Ручка, банка воды, пепельница — <strong>слева</strong></li>
+                            <li>Сигарета в <strong>левой</strong> руке</li>
+                            <li>Гильза на подоконнике</li>
+                            <li>За окном темно, но девушка писала без света</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-hint" onclick="toggleHint('hint1')">💡 Подсказка</button>
+                        <button class="btn btn-solution" onclick="toggleSolution('sol1')">⚖️ Вердикт</button>
+                    </div>
+
+                    <div id="hint1" class="hint-box">
+                        <div class="hint-content">
+                            Обратите внимание на то, какой рукой девушка держит предметы. Все ли логично в расположении вещей?
+                        </div>
+                    </div>
+
+                    <div id="sol1" class="solution-box">
+                        <div class="verdict">
+                            <div class="verdict-title">
+                                ️ УБИЙСТВО (Инсценировка самоубийства)
+                            </div>
+                            <p class="verdict-text">
+                                <strong>Девушка — левша!</strong> Все предметы (лампа справа, остальное слева) и сигарета в левой руке это подтверждают. 
+                                Зачем ей стрелять правой рукой? Гильза на подоконнике маловероятна. Записка написана либо давно, либо лампу выдернули во время борьбы. 
+                                <strong>Это убийство!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2: Банкрот -->
+            <div class="case-card fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1555447405-058428d1deef?auto=format&fit=crop&w=800&q=80" alt="Дело 2">
+                    <div class="case-number">02</div>
+                    <div class="difficulty">🔥🔥 Сложный</div>
+                </div>
+                <div class="case-content">
+                    <h3>Банкрот и пистолет</h3>
+                    <p class="case-description">
+                        Мужчина найден мертвым. На стене график банкротства. Версия: напился с горя, разбросал вещи, написал записку и застрелился.
+                    </p>
+                    
+                    <div class="clues-section">
+                        <div class="clues-title">🔍 УЛИКИ НА МЕСТЕ:</div>
+                        <ul class="clues-list">
+                            <li>Признаки борьбы в комнате</li>
+                            <li>За окном — бегущий человек</li>
+                            <li>Стакан и ноутбук на <strong>левой</strong> стороне</li>
+                            <li>Ящики стола выдвинуты слева</li>
+                            <li>Пистолет в <strong>правой</strong> руке</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-hint" onclick="toggleHint('hint2')">💡 Подсказка</button>
+                        <button class="btn btn-solution" onclick="toggleSolution('sol2')">⚖️ Вердикт</button>
+                    </div>
+
+                    <div id="hint2" class="hint-box">
+                        <div class="hint-content">
+                            Если человек левша, где он обычно располагает свои вещи? А в какой руке должен быть пистолет?
+                        </div>
+                    </div>
+
+                    <div id="sol2" class="solution-box">
+                        <div class="verdict">
+                            <div class="verdict-title">
+                                ⚠️ УБИЙСТВО
+                            </div>
+                            <p class="verdict-text">
+                                Жертва — <strong>левша</strong> (вещи слева). Убийца не знал этого и вложил пистолет в правую руку для инсценировки. 
+                                Признаки борьбы и бегущий человек за окном подтверждают: в кабинете были двое. 
+                                <strong>Это убийство!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 3: Дом с бассейном -->
+            <div class="case-card fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=800&q=80" alt="Дело 3">
+                    <div class="case-number">03</div>
+                    <div class="difficulty">🔥 Легкий</div>
+                </div>
+                <div class="case-content">
+                    <h3>Дом с бассейном</h3>
+                    <p class="case-description">
+                        В доме убили Мэри. 4 подозреваемых дали показания. Детектив попросил показать руки и сразу понял, кто убийца.
+                    </p>
+                    
+                    <div class="clues-section">
+                        <div class="clues-title">🔍 ПОКАЗАНИЯ:</div>
+                        <ul class="clues-list">
+                            <li><strong>Миа:</strong> "Пришла с работы 2 часа назад, была на кухне"</li>
+                            <li><strong>Джон:</strong> "С утра сидел с книгой в саду"</li>
+                            <li><strong>Дженнифер:</strong> "3 часа плавала в бассейне"</li>
+                            <li><strong>Джейн:</strong> "Была в комнате, рисовала"</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-hint" onclick="toggleHint('hint3')">💡 Подсказка</button>
+                        <button class="btn btn-solution" onclick="toggleSolution('sol3')">⚖️ Вердикт</button>
+                    </div>
+
+                    <div id="hint3" class="hint-box">
+                        <div class="hint-content">
+                            Что происходит с кожей рук после долгого пребывания в воде?
+                        </div>
+                    </div>
+
+                    <div id="sol3" class="solution-box">
+                        <div class="verdict">
+                            <div class="verdict-title">
+                                ⚠️ УБИЙЦА — ДЖЕННИФЕР
+                            </div>
+                            <p class="verdict-text">
+                                Если бы Дженнифер действительно 3 часа плавала в бассейне, на её руках были бы <strong>характерные морщины от воды</strong>. 
+                                Но их не было! Она соврала. 
+                                <strong>Дженнифер — убийца!</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 4: Кассета -->
+            <div class="case-card fade-in">
+                <div class="case-image">
+                    <img src="https://images.unsplash.com/photo-1516961642265-531546e84af2?auto=format&fit=crop&w=800&q=80" alt="Дело 4">
+                    <div class="case-number">04</div>
+                    <div class="difficulty">🔥🔥 Средний</div>
+                </div>
+                <div class="case-content">
+                    <h3>Кассетный магнитофон</h3>
+                    <p class="case-description">
+                        Мужчина найден мертвым с магнитофоном в одной руке и пистолетом в другой. На кассете: "Мне незачем жить..." и звук выстрела. Полиция сразу поняла — это убийство.
+                    </p>
+                    
+                    <div class="clues-section">
+                        <div class="clues-title">🔍 ВОПРОС:</div>
+                        <ul class="clues-list">
+                            <li>Полиция нажала "Play" и услышала предсмертную запись</li>
+                            <li>Затем звук выстрела</li>
+                            <li>Но что-то не сходится...</li>
+                        </ul>
+                    </div>
+
+                    <div class="btn-group">
+                        <button class="btn btn-hint" onclick="toggleHint('hint4')">💡 Подсказка</button>
+                        <button class="btn btn-solution" onclick="toggleSolution('sol4')">⚖️ Вердикт</button>
+                    </div>
+
+                    <div id="hint4" class="hint-box">
+                        <div class="hint-content">
+                            Если человек записывает предсмертное послание и сразу стреляет в себя, кто перемотает кассету?
+                        </div>
+                    </div>
+
+                    <div id="sol4" class="solution-box">
+                        <div class="verdict">
+                            <div class="verdict-title">
+                                ⚠️ УБИЙСТВО (Инсценировка)
+                            </div>
+                            <p class="verdict-text">
+                                Если мужчина застрелил себя во время записи, <strong>кто перемотал кассету</strong> до начала? 
+                                Полиция сразу нажала "Play" — значит, кассета уже была перемотана. 
+                                Это сделал убийца!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Visual Puzzles -->
+        <div class="visual-puzzle fade-in">
+            <h2>🎯 Визуальные загадки</h2>
+            <p style="margin-bottom: 30px; color: var(--text-secondary);">Изучите изображения и найдите нестыковки. Кто преступник?</p>
+            
+            <div class="puzzle-grid">
+                <div class="puzzle-item">
+                    <img src="https://i.imgur.com/your-image-1.jpg" alt="Загадка 1" onerror="this.src='https://via.placeholder.com/600x400/151b2d/d4af37?text=Загадка+1:+Комната'">
+                    <div class="puzzle-answer">
+                        <h4>Загадка 1: Комната</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Найдите 5 нестыковок в сцене</p>
+                        <button class="btn btn-solution" style="margin-top: 10px; padding: 10px;" onclick="alert('Ответ: 1) Вентилятор не работает 2) Кастрюля на плите 3) Открытый шкаф 4) Следы крови 5) Разбросанные вещи')">Показать ответ</button>
+                    </div>
+                </div>
+
+                <div class="puzzle-item">
+                    <img src="https://i.imgur.com/your-image-2.jpg" alt="Загадка 2" onerror="this.src='https://via.placeholder.com/600x400/151b2d/d4af37?text=Загадка+2:+Самоубийство'">
+                    <div class="puzzle-answer">
+                        <h4>Загадка 2: Самоубийство?</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Убийство или самоубийство?</p>
+                        <button class="btn btn-solution" style="margin-top: 10px; padding: 10px;" onclick="alert('Ответ: Убийство! 1) Табурет опрокинут не с той стороны 2) Костыли стоят ровно 3) Шкаф открыт 4) Нет следов борьбы')">Показать ответ</button>
+                    </div>
+                </div>
+
+                <div class="puzzle-item">
+                    <img src="https://i.imgur.com/your-image-3.jpg" alt="Загадка 3" onerror="this.src='https://via.placeholder.com/600x400/151b2d/d4af37?text=Загадка+3:+Ресторан'">
+                    <div class="puzzle-answer">
+                        <h4>Загадка 3: Ресторан</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">Кто из четверых — убийца?</p>
+                        <button class="btn btn-solution" style="margin-top: 10px; padding: 10px;" onclick="alert('Ответ: №2 — его тарелка пуста, но он сидит давно. №1 ест, №3 ест, №4 ждет заказ. Убийца нервничает и не ест!')">Показать ответ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p style="font-family: 'Special Elite', cursive; font-size: 1.1rem; margin-bottom: 10px;">
+            🔍 КРИМИНАЛИСТИЧЕСКИЙ КВЕСТ
+        </p>
+        <p>© 2026 Кафедра уголовного процесса и криминалистики</p>
+        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.7;">
+            Материалы основаны на учебных делах и классических задачах инспектора Варнике
+        </p>
+    </footer>
+
+    <script>
+        function toggleSolution(id) {
+            const solution = document.getElementById(id);
+            const btn = event.target;
+            
+            if (solution.classList.contains('visible')) {
+                solution.classList.remove('visible');
+                btn.innerHTML = '⚖️ Вердикт';
+                btn.style.background = 'linear-gradient(135deg, #e63946 0%, #c1121f 100%)';
+            } else {
+                // Close other solutions
+                document.querySelectorAll('.solution-box.visible').forEach(el => {
+                    el.classList.remove('visible');
+                });
+                document.querySelectorAll('.btn-solution').forEach(b => {
+                    if (b !== btn) {
+                        b.innerHTML = '⚖️ Вердикт';
+                        b.style.background = 'linear-gradient(135deg, #e63946 0%, #c1121f 100%)';
+                    }
+                });
+                
+                solution.classList.add('visible');
+                btn.innerHTML = '✕ Закрыть';
+                btn.style.background = '#0a0e1a';
+            }
+        }
+
+        function toggleHint(id) {
+            const hint = document.getElementById(id);
+            const btn = event.target;
+            
+            if (hint.classList.contains('visible')) {
+                hint.classList.remove('visible');
+                btn.innerHTML = '💡 Подсказка';
+                btn.style.background = 'transparent';
+                btn.style.color = '#457b9d';
+            } else {
+                hint.classList.add('visible');
+                btn.innerHTML = '✕ Скрыть';
+                btn.style.background = '#457b9d';
+                btn.style.color = 'white';
+            }
+        }
+
+        // Close solutions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.case-card')) {
+                document.querySelectorAll('.solution-box.visible').forEach(el => {
+                    el.classList.remove('visible');
+                });
+                document.querySelectorAll('.btn-solution').forEach(btn => {
+                    btn.innerHTML = '⚖️ Вердикт';
+                    btn.style.background = 'linear-gradient(135deg, #e63946 0%, #c1121f 100%)';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
